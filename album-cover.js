@@ -203,7 +203,6 @@ canvas.addEventListener('click', refreshCoordinate);
        ctx.fill();
 
      
-
        ctx.beginPath();
        ctx.moveTo(548,836);
        
@@ -361,13 +360,24 @@ canvas.addEventListener('click', refreshCoordinate);
        ctx.bezierCurveTo(515,807,519,818,512,824);
        ctx.lineTo(508,822);
        ctx.bezierCurveTo(510,825,505,827,504,827);
+       ctx.moveTo(583,778);
+       drawLines([601,732,612,738,583,778]);
        ctx.closePath();
        
        ctx.fillStyle = color2;
        ctx.fill();
 
-    //    ctx.strokeStyle = "red";
-    //    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(574,763);
+    ctx.bezierCurveTo(577,768,582,765,581,786);
+    ctx.bezierCurveTo(564,801,560,800,558,771);
+    ctx.lineTo(574,763);
+    ctx.closePath();
+
+    ctx.fillStyle = color1;
+    ctx.fill();
+
+
 
 ctx.textAlign = "center"
 ctx.font = "300 32px miller-display";

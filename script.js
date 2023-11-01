@@ -25,46 +25,33 @@ function updateSquarePosition(){
 squareXRange.addEventListener("input", updateSquarePosition);
 squareYRange.addEventListener("input", updateSquarePosition);
 
-function drawSquares(){
-    console.log(squareColor);
-    ctx.fillStyle = squareColor;
-    ctx.fillRect(squareX, squareY, 20, 20);
+// function drawSquares(){
+//     console.log(squareColor);
+//     ctx.fillStyle = squareColor;
+//     ctx.fillRect(squareX, squareY, 20, 20);
+// increasingColorHue++;
+// squareColor = "hsl(" + increasingColorHue + ", 50%, 50%)";
+// }
+
+
+
+isMouseDown = false;
+
+function drawSquares(e){
+
+if(isMouseDown=true){
+squareX = e.offsetX;
+squareY = e.offsetY;
+ctx.fillStyle = squareColor;
+ctx.fillRect(squareX, squareY, 20, 20);
 increasingColorHue++;
 squareColor = "hsl(" + increasingColorHue + ", 50%, 50%)";
+squareX = squareX + 20;
+requestAnimationFrame(drawSquares);
+}
 }
 
+canvas.addEventListener("mousedown", drawSquares);
+canvas.addEventListener("mouseup", () => {isMouseDown = false});
 
 
-
-
-let isMouseDown = false;
-
-function drawSquaresMouse(e) {
-    if (isMouseDown) {
-        console.log(e);
-
-        squareX = e.x - 10;
-        squareY = e.y - 115;
-
-        ctx.fillStyle = squareColor;
-        ctx.fillRect(squareX, squareY, 20, 20);
-
-        increasingColorHue = increasingColorHue + 10;
-        squareColor = "hsl(" + increasingColorHue + ", 50%, 50%)";
-
-        requestAnimationFrame(drawSquaresMouse);
-    }
-}
-
-canvas.addEventListener("mousedown", (e) => {
-    isMouseDown = true;
-    drawSquaresMouse(e);
-});
-
-canvas.addEventListener("mouseup", () => {
-    isMouseDown = false;
-});
-
-canvas.addEventListener("mouseout", () => {
-    isMouseDown = false;
-});
