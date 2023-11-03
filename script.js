@@ -22,6 +22,14 @@ function updateSquarePosition(){
    drawSquares();
 }
 
+
+
+
+
+
+
+
+
 squareXRange.addEventListener("input", updateSquarePosition);
 squareYRange.addEventListener("input", updateSquarePosition);
 
@@ -35,23 +43,32 @@ squareYRange.addEventListener("input", updateSquarePosition);
 
 
 
-isMouseDown = false;
+let isMouseDown = false;
 
 function drawSquares(e){
-
-if(isMouseDown=true){
+if(isMouseDown==true){
+   console.log(isMouseDown);
+   if(isMouseDown == true){canvas.addEventListener("mousemove", drawSquares);};
 squareX = e.offsetX;
 squareY = e.offsetY;
 ctx.fillStyle = squareColor;
 ctx.fillRect(squareX, squareY, 20, 20);
-increasingColorHue++;
+increasingColorHue = increasingColorHue + 0.01;
 squareColor = "hsl(" + increasingColorHue + ", 50%, 50%)";
 squareX = squareX + 20;
 requestAnimationFrame(drawSquares);
 }
 }
 
+
+
+canvas.addEventListener("mousedown", ()=>{isMouseDown = true;});
 canvas.addEventListener("mousedown", drawSquares);
-canvas.addEventListener("mouseup", () => {isMouseDown = false});
 
 
+canvas.addEventListener("mouseup", () => {isMouseDown = false, console.log(isMouseDown)});
+
+
+function clearCanvas(){
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
+};

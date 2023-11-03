@@ -3,9 +3,14 @@ let canvas = document.querySelector('#album-cover-canvas');
 /** @type {CanvasRenderingContext2d} */
 let ctx = canvas.getContext("2d");
 
-let color1 = "#DEEAFF"
-let color2 = "#6E8FA5"
-let color3 = "#2F3542"
+
+h1 = 218;
+h2 = 204;
+h3 = 221;
+
+let color1 = `hsl(${h1},100%,94%)`
+let color2 = `hsl(${h2},23%,54%)`
+let color3 = `hsl(${h3},17%,22%)`
 
 
     //    // Define the grid properties
@@ -86,6 +91,11 @@ function refreshCoordinate(e){
 canvas.addEventListener('click', refreshCoordinate);
 
 
+
+
+let wingY = 1;
+function drawEagle(){
+       ctx.clearRect(0,0,canvas.width,canvas.height);
        ctx.beginPath();
        ctx.moveTo(845,781);
        ctx.lineTo(814,785);
@@ -152,7 +162,7 @@ canvas.addEventListener('click', refreshCoordinate);
        ctx.bezierCurveTo(357,623,350,620,353,632);
 
 
-
+       //LeftLightBlueWing
        ctx.moveTo(490,593);
        ctx.lineTo(427,577);
        ctx.lineTo(304,495);
@@ -160,7 +170,7 @@ canvas.addEventListener('click', refreshCoordinate);
        ctx.lineTo(273,476);
        ctx.bezierCurveTo(258,470,235,459,227,451);
        ctx.lineTo(270,454);
-
+       
        ctx.lineTo(241,444);
        ctx.bezierCurveTo(202,439,162,418,155,407);
        ctx.lineTo(250,425);
@@ -182,6 +192,7 @@ canvas.addEventListener('click', refreshCoordinate);
        ctx.lineTo(576,531);
        ctx.lineTo(490,593);
 
+       
 
 
        ctx.moveTo(734,308);
@@ -198,6 +209,7 @@ canvas.addEventListener('click', refreshCoordinate);
        drawLines([824,481,823,492,843,493,850,502,846,513,825,513,764,497,714,356,734,308]);
        ctx.closePath();
        
+
        
        ctx.fillStyle = color2;
        ctx.fill();
@@ -376,7 +388,17 @@ canvas.addEventListener('click', refreshCoordinate);
 
     ctx.fillStyle = color1;
     ctx.fill();
+    
 
+    h1++;
+    h2++;
+    h3++;
+    color1 = `hsl(${h1},100%,94%)`
+    color2 = `hsl(${h2},23%,54%)`
+    color3 = `hsl(${h3},17%,22%)`
+    canvas.style.backgroundColor = color1;
+
+requestAnimationFrame(drawEagle);
 
 
 ctx.textAlign = "center"
@@ -393,6 +415,10 @@ ctx.textAlign = "center"
 ctx.font = "bold 38px miller-display";
 ctx.fillStyle = color3;
 ctx.fillText("Feathered Fretwork", 541, 951);
+}
+
+drawEagle();
+
 
 
 
