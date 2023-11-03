@@ -18,10 +18,10 @@ let ctx = canvas.getContext("2d");
 
 
 let snakeSpeed = 0.3;
-let points = 10;
+let points = 5;
 let snakeLength = points+1;
 let direction = 2;
-let snakeX = 200;
+let snakeX = 20;
 let snakeY = 200;
 let squareX = snakeX;
 let squareY = snakeY;
@@ -30,23 +30,26 @@ let snakeSquares = [snakeSquare];
 
 function drawSnake(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-for (i = 0; i < snakeLength; i++){
+for (let i = 0; i < snakeLength; i++){
     squareX = snakeX + 10;
     squareY = snakeY;
     snakeSquare = {squareX: squareX, squareY: squareY};
     snakeSquares.unshift(snakeSquare);
 
-    for(j = 0; j < snakeLength; j++){
+    for(j = 0; j < snakeSquares.length; j++){
         ctx.fillStyle = "green";
         ctx.fillRect(snakeSquares[j].squareX,snakeSquares[j].squareY,10,10);
     };
+if (i > snakeLength)
 }
+snakeSquares.pop();
+
 
 if(direction == 2){snakeX = snakeX + snakeSpeed}
 if(direction == 4){snakeX = snakeX - snakeSpeed}
 if(direction == 1){snakeY = snakeY - snakeSpeed}
 if(direction == 3){snakeY = snakeY + snakeSpeed}
-snakeSquares.pop();
+
 requestAnimationFrame(drawSnake);
 }
 
