@@ -28,21 +28,35 @@ let squareY = snakeY;
 let snakeSquare = {squareX: squareX, squareY: squareY};
 let snakeSquares = [snakeSquare];
 
+
 function drawSnake(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-for (let i = 0; i < snakeLength; i++){
-    squareX = snakeX + 10;
+    squareX = snakeX;
     squareY = snakeY;
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
     snakeSquare = {squareX: squareX, squareY: squareY};
     snakeSquares.unshift(snakeSquare);
 
-    for(j = 0; j < snakeSquares.length; j++){
-        ctx.fillStyle = "green";
-        ctx.fillRect(snakeSquares[j].squareX,snakeSquares[j].squareY,10,10);
-    };
-if (i > snakeLength)
+if(snakeSquares.length>=snakeLength){
+    snakeSquares.pop();
+} else{
+
 }
-snakeSquares.pop();
+
+for(j = 0; j < snakeSquares.length; j++){
+    ctx.fillStyle = "green";
+    ctx.fillRect(snakeSquares[j].squareX,snakeSquares[j].squareY,10,10);
+    console.log(snakeSquares[j].squareX,snakeSquares[j].squareY);
+};
+
+if(direction == 2){squareX = squareX - 10;}
+if(direction == 4){squareX = squareX + 10;}
+if(direction == 1){squareY = squareY + 10;}
+if(direction == 3){squareY = squareY - 10;}
+
+
+
+
 
 
 if(direction == 2){snakeX = snakeX + snakeSpeed}
@@ -62,14 +76,10 @@ function startGame(){
 drawSnake();
 }
 
+
+
 function changeDirection(e){
     
-    // function clearTrail(clearRectX, clearRectY, clearRectW, clearRectH){
-    //     ctx.fillStyle = "red";
-    //     ctx.fillRect(clearRectX, clearRectY, clearRectW, clearRectH);
-    
-    // }
-
     console.log(e);
     if(e.key=="ArrowDown"){direction = 3};
     if(e.key=="ArrowRight"){direction = 2};
